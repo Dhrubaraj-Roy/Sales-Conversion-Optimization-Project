@@ -48,7 +48,7 @@ Instead, we are building an end-to-end pipeline for continuously predicting and 
 
 This pipeline can be deployed to the cloud, scale up according to our needs, and ensure that we track the parameters and data that flow through every pipeline that runs. It includes raw data input, features, results, the machine learning model and model parameters, and prediction outputs. ZenML helps us to build such a pipeline in a simple, yet powerful, way.
 
-In this Project, we give special consideration to the [MLflow integration](https://github.com/zenml-io/zenml/tree/main/examples) of ZenML. In particular, we utilize MLflow tracking to track our metrics and parameters, and MLflow deployment to deploy our model. We also use [Streamlit](https://streamlit.io/) to showcase how this model will be used in a real-world setting.
+In this Project, we give special consideration to the [MLflow integration](https://github.com/zenml-io/zenml/tree/main/examples) of ZenML. In particular, we utilize MLflow tracking to track our metrics and parameters, and MLflow deployment to deploy our model. 
 
 
 ### Training Pipeline
@@ -105,9 +105,3 @@ python run_pipeline.py
 python run_deployment.py
 ```
 
-## 🕹 Demo Streamlit App
-
-There is a live demo of this project using [Streamlit](https://streamlit.io/) which you can find [here](). It takes some input features of the ad_campaign and predicts the we get Approved Conversion or not using the latest trained models. If you want to run this Streamlit app in your local system, you can run the following command:-
-
-```bash
-streamlit run streamlit_app.py
