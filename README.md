@@ -2,7 +2,7 @@
 
 ## Overview
 
-**Problem statement**: This project aims to optimize sales conversions for an anonymous organization's social media ad campaign.We will be using the [Sales Conversion Optimization](https://www.kaggle.com/datasets/loveall/clicks-conversion-tracking/data) dataset.This dataset includes 1143 observations of social media ad campaings and for each observation 11 columns are present.colums are ad_id, xyz_campaign_id, fb_campaign_id, age, gender, interest, Impressions, Clicks, Spent, Total conversion and Approved conversion. 
+**Problem statement**: This project aims to optimize sales conversions for an anonymous organization's social media ad campaign.We will be using the [Sales Conversion Optimization](https://www.kaggle.com/datasets/loveall/clicks-conversion-tracking/data) dataset.This dataset includes 1143 observations of social media ad campaings and for each observation 11 columns are present.colums are ad_id, xyz_campaign_id, fb_campaign_id, age, gender, interest, Impressions, Clicks, Spent, Total conversion and Approved conversion.Our amis is to predict the total number of Approved conversion while other information about ad_campaings is given.
 
 ### ZenML Framework Integration
 ZenML is employed to streamline the development and deployment of machine learning pipelines. It provides a framework, template, and seamless integration with MLflow for efficient tracking and deployment. By using ZenML, the project aims to offer a flexible and powerful solution for businesses to build and deploy machine learning models.
@@ -42,7 +42,7 @@ zenml stack register mlflow_stack -a default -o default -d mlflow -e mlflow_trac
 ```
 
 ## :thumbsup: The Solution
-In order to build a real-world workflow for predicting the sales conversion on the ad_campaign (which will help make better decisions), it is not enough to just train the model once.
+In order to build a real-world workflow for predicting the Aprroved Conversion on the ad_campaign (which will help make better decisions), it is not enough to just train the model once.
 
 Instead, we are building an end-to-end pipeline for continuously predicting and deploying the machine learning model, alongside a data application that utilizes the latest deployed model for the business to consume.
 
@@ -63,7 +63,7 @@ Our standard training pipeline consists of several steps:
 
 ### Deployment Pipeline
 
-We have another pipeline, the `deployment_pipeline.py`, that extends the training pipeline, and implements a continuous deployment workflow. It ingests and processes input data, trains a model and then (re)deploys the prediction server that serves the model if it meets our evaluation criteria. The criteria that we have chosen is a configurable threshold on the [accuracy_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html) of the model. The first four steps of the pipeline are the same as above, but we have added the following additional ones:
+We have another pipeline, the `deployment_pipeline.py`, that extends the training pipeline, and implements a continuous deployment workflow. It ingests and processes input data, trains a model and then (re)deploys the prediction server that serves the model if it meets our evaluation criteria. The criteria that we have chosen is a configurable threshold on the [R2_Score](https://scikit-learn.org/stable/modules/generated/sklearn.r2_score.html) of the model. The first four steps of the pipeline are the same as above, but we have added the following additional ones:
 
 - `deployment_trigger`: The step checks whether the newly trained model meets the criteria set for deployment.
 - `model_deployer`: This step deploys the model as a service using MLflow (if deployment criteria is met).
@@ -92,4 +92,5 @@ python run_pipeline.py
 ```bash
 python run_deployment.py
 ```
+
 
