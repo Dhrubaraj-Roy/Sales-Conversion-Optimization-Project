@@ -16,7 +16,7 @@ class DataProcessor:
     """ Preprocesses the data"""
     def process_data(self, df: pd.DataFrame):
         self.drop_useless_cols(df = df)
-        self.find_and_handle_outliers(columns = ['Impressions', 'Clicks', 'Spent', 'Total_Conversion', 'Approved_Conversion'])
+        self.find_and_handle_outliers(df = df, columns = ['Impressions', 'Clicks', 'Spent', 'Total_Conversion', 'Approved_Conversion'])
         self.create_age_bounds(df = df)
         return df
 
@@ -24,7 +24,7 @@ class DataProcessor:
         not_required_cols = ['ad_id', 'xyz_campaign_id', 'fb_campaign_id']
         df.drop(columns=not_required_cols, axis = 1, inplace= True)
     
-    def find_and_handle_outliers(self, columns: pd.Series):
+    def find_and_handle_outliers(self,df: pd.DataFrame, columns: pd.Series):
         """Uses iqr method to get minium and maxium threshold for a value to be outlier"""
         for col in columns:
             # Calculate lower and upper bound with IQR
@@ -51,7 +51,10 @@ class DataSplitter:
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
         return X_train, X_test, y_train, y_test
 
+# Example implementations
+#data_cleaning = DataCleaning()
+#X_train, X_test, y_train, y_test = data_cleaning.process_and_split_data(df=df)
+#return X_train, X_test, y_train, y_test
 
-df = pd.read_csv('/home/diwas/Documents/DevStuff/Sales-Conversion-Optimization-Project/data/raw/KAG_conversion_data.csv')
-data_cleaning = DataCleaning()
-X_train, X_test, y_train, y_test = data_cleaning.process_and_split_data(df)
+
+# df = pd.read_csv('/home/diwas/Documents/DevStuff/Sales-Conversion-Optimization-Project/data/raw/KAG_conversion_data.csv')
