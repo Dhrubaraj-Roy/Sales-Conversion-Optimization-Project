@@ -5,3 +5,9 @@ zenml integration install mlflow -y
 zenml experiment-tracker register mlflow_tracker3 --flavor=mlflow
 zenml model-deployer register mlflow3 --flavor=mlflow
 zenml stack register mlflow_stack3 -a default -o default -d mlflow -e mlflow_tracker --set
+
+
+
+ mlflow ui --backend-store-uri 'file:/home/dhruba/.config/zenml/local_stores/b7a1fdb7-74f5-49c0-990b-5a51d202b3c2/mlruns'
+
+ some testing in mytxt
